@@ -6,7 +6,7 @@ header{
     color:white;
     display: flex;
     height: 600px;
-    background-image: url(../image/MyCity.png);
+    background-image: url(../image/background.jpg);
     background-size:cover;
     background-repeat: no-repeat;
 }
