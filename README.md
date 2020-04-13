@@ -7,7 +7,7 @@ Please look [here](https://stepfencurryxiao.github.io/)!
 
 ### 2.Clone this repo
 ```
-git clone git@github.com:stepfencurryxiao/stepfencurryxiao.github.io.git
+git clone git@github.com:StepfenShawn/StepfenShawn.github.io.git
 ```
 
 ### 3.Run the website on your local to ensure it is working
