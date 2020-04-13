@@ -1,6 +1,6 @@
-# stepfencurryxiao.github.io
+# StepfenShawn.github.io
 This is a website about me.Welcome to pull request!
-Please look [here](https://stepfencurryxiao.github.io/)!
+Please look [here](https://stepfenshawn.github.io/)!
 
 # Contributing
 ### 1.Fork this repo
