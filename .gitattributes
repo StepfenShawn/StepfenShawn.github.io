@@ -1,3 +1,2 @@
-*.css linguist-language = html
-*.html linguist-language = css
-*.md linguist-language = javascript 
+*.css linguist-language=html
+*.html linguist-language=css
