@@ -1,0 +1,5 @@
+google_analytics: 
+theme: jekyll-theme-midnight
+show_downloads: true
+gems:
+  - jekyll-mentions
