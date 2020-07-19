@@ -20,6 +20,7 @@ body{
 
 #container {
   margin: 0;
+  height: 900px;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -47,4 +48,42 @@ svg:hover{
 
 #arrow{
   cursor: url(../image/arrow.png), auto;
+}
+
+#me{
+  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card_image {
+  vertical-align: middle;
+  width: 25vmin;
+  height: 25vmin;
+  border-radius: 50%;
+  box-shadow: 2px 2px 30px 1px rgba(0,0,0,.6);
+}
+
+.card-name {
+  margin-top: .5em;
+  font-size: 5vh;
+}
+
+.card_location{
+  letter-spacing: 1px;
+  font-size: 3vh;
+  opacity: .5;
+  margin: 10px
+}
+
+.card_info{
+  letter-spacing: 1px;
+  font-size: 4vh;
+  opacity: .5;
+  margin: 10px
 }
