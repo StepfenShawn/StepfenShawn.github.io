@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="前言身为兼职量化交易开发者, 如果以后要处理TB级别的交易数据, 单机运行就太弱鸡了, 这时候就要上Spark集群了.   在 Spark 上有很多集群的模式, 其中 Spark 自带就是 Standalone 模式.咩系集群? 即系配置一堆电脑计算同一件任务.反正公司大把电脑(肉机)… Standalone模式将各台电脑分成两种角色 – Master(大佬) 和 Worker(马仔)也就是 Ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cluster on windows with spark. 用Spark搭建人生第一个Windows集群">
+<meta property="og:url" content="https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/index.html">
+<meta property="og:site_name" content="Stepfen Shawn">
+<meta property="og:description" content="前言身为兼职量化交易开发者, 如果以后要处理TB级别的交易数据, 单机运行就太弱鸡了, 这时候就要上Spark集群了.   在 Spark 上有很多集群的模式, 其中 Spark 自带就是 Standalone 模式.咩系集群? 即系配置一堆电脑计算同一件任务.反正公司大把电脑(肉机)… Standalone模式将各台电脑分成两种角色 – Master(大佬) 和 Worker(马仔)也就是 Ma">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-19T01:11:21.000Z">
+<meta property="article:modified_time" content="2023-08-24T16:10:23.129Z">
+<meta property="article:author" content="Stepfen Shawn">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Cluster on windows with spark. 用Spark搭建人生第一个Windows集群</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/StepfenShawn">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/08/17/mysql_over_trick/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/01/04/how_to_eval_in_computer/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&text=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&is_video=false&description=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群&body=Check out this article: https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&name=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&t=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step1-%E8%AE%BE%E7%BD%AE-Master"><span class="toc-number">2.</span> <span class="toc-text">Step1: 设置 Master</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step2-%E8%AE%BE%E7%BD%AE-Worker"><span class="toc-number">3.</span> <span class="toc-text">Step2: 设置 Worker</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step3-%E6%8F%90%E4%BA%A4"><span class="toc-number">4.</span> <span class="toc-text">Step3: 提交</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91"><span class="toc-number">5.</span> <span class="toc-text">踩坑</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Cluster on windows with spark. 用Spark搭建人生第一个Windows集群
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Stepfen Shawn</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-19T01:11:21.000Z" class="dt-published" itemprop="datePublished">2023-07-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>身为兼职量化交易开发者, 如果以后要处理TB级别的交易数据, 单机运行就太弱鸡了, 这时候就要上Spark集群了.  </p>
+<p>在 Spark 上有很多集群的模式, 其中 Spark 自带就是 Standalone 模式.<br>咩系集群? 即系配置一堆电脑计算同一件任务.<br>反正公司大把电脑(肉机)…</p>
+<p>Standalone模式将各台电脑分成两种角色 – Master(大佬) 和 Worker(马仔)<br>也就是 Master 可以给各个 Worker 分配任务, 而 Master 自己又可以揸刀劈友(运行计算), 这就形成了一股强大的算力.  </p>
+<h1 id="Step1-设置-Master"><a href="#Step1-设置-Master" class="headerlink" title="Step1: 设置 Master"></a>Step1: 设置 Master</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-class org.apache.spark.deploy.master.Master</span><br></pre></td></tr></table></figure>
+<p>结果会出现 <code>spark://ip:port</code> 为 Master 的地址, 设置 Worker 时需用到.</p>
+<h1 id="Step2-设置-Worker"><a href="#Step2-设置-Worker" class="headerlink" title="Step2: 设置 Worker"></a>Step2: 设置 Worker</h1><p>在另外一台电脑上设置其为 <code>Worker</code>, 用 Master:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-class org.apache.spark.deploy.worker.Worker spark://ip:port</span><br></pre></td></tr></table></figure>
+<h1 id="Step3-提交"><a href="#Step3-提交" class="headerlink" title="Step3: 提交"></a>Step3: 提交</h1><p>在 master 机中提交写好嘅程序:  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --master spark://ip:port examples/src/main/python/pi.py 1000</span><br></pre></td></tr></table></figure>
+<p>在 Master 机用浏览器打开 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> 可以看到集群计算运行的情况</p>
+<h1 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h1><p>spark-submit 提交 python 时没有反应.<br>解决方法: 在 windows 里面要在 python 安装路径中创建python3副本(复制 python.exe 为 python3.exe)</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/StepfenShawn">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step1-%E8%AE%BE%E7%BD%AE-Master"><span class="toc-number">2.</span> <span class="toc-text">Step1: 设置 Master</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step2-%E8%AE%BE%E7%BD%AE-Worker"><span class="toc-number">3.</span> <span class="toc-text">Step2: 设置 Worker</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step3-%E6%8F%90%E4%BA%A4"><span class="toc-number">4.</span> <span class="toc-text">Step3: 提交</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91"><span class="toc-number">5.</span> <span class="toc-text">踩坑</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&text=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&is_video=false&description=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群&body=Check out this article: https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&title=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&name=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2023/07/19/spark_bug_mark1/&t=Cluster on windows with spark. 用Spark搭建人生第一个Windows集群"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2023
+    Stepfen Shawn
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/StepfenShawn">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
