@@ -9,7 +9,7 @@
     <meta name="description" content="窗口函数是我最近在做数据分析时学到的小技巧, 下面就写一篇blog记录一下。。。 基本语法比起熟悉的 group by 操作, 窗口函数的好处就是不会不减少原表的行数, 以及使代码变得更加优雅(bushi)。   首先来看看 mysql 窗口函数的语法格式:   12函数名（[expr]） over 子句over 是关键字，用来指定函数执行的窗口范围 而子句则有三类:    partition子句">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql trick -- windows function. Mysql小技巧:窗口函数">
-<meta property="og:url" content="https://stepfenshawn.github.io/2023/08/17/mysql/index.html">
+<meta property="og:url" content="https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/index.html">
 <meta property="og:site_name" content="Stepfen Shawn">
 <meta property="og:description" content="窗口函数是我最近在做数据分析时学到的小技巧, 下面就写一篇blog记录一下。。。 基本语法比起熟悉的 group by 操作, 窗口函数的好处就是不会不减少原表的行数, 以及使代码变得更加优雅(bushi)。   首先来看看 mysql 窗口函数的语法格式:   12函数名（[expr]） over 子句over 是关键字，用来指定函数执行的窗口范围 而子句则有三类:    partition子句">
 <meta property="og:locale" content="en_US">
@@ -82,7 +82,7 @@
       <ul>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2020/12/20/first_cantonese_pl/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2023/01/04/how_to_eval_in_computer/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -95,17 +95,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2023/08/17/mysql/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2023/08/17/mysql/&text=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2023/08/17/mysql/&is_video=false&description=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Mysql trick -- windows function. Mysql小技巧:窗口函数&body=Check out this article: https://stepfenshawn.github.io/2023/08/17/mysql/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2023/08/17/mysql/&name=Mysql trick -- windows function. Mysql小技巧:窗口函数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2023/08/17/mysql/&t=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&text=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&is_video=false&description=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mysql trick -- windows function. Mysql小技巧:窗口函数&body=Check out this article: https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&name=Mysql trick -- windows function. Mysql小技巧:窗口函数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&t=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -202,17 +202,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2023/08/17/mysql/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2023/08/17/mysql/&text=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2023/08/17/mysql/&is_video=false&description=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Mysql trick -- windows function. Mysql小技巧:窗口函数&body=Check out this article: https://stepfenshawn.github.io/2023/08/17/mysql/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2023/08/17/mysql/&name=Mysql trick -- windows function. Mysql小技巧:窗口函数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2023/08/17/mysql/&t=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&text=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&is_video=false&description=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mysql trick -- windows function. Mysql小技巧:窗口函数&body=Check out this article: https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&title=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&name=Mysql trick -- windows function. Mysql小技巧:窗口函数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2023/08/17/mysql_over_trick/&t=Mysql trick -- windows function. Mysql小技巧:窗口函数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

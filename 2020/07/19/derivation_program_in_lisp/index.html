@@ -9,7 +9,7 @@
     <meta name="description" content="前言记得之前看tensorflow, numpy等库的api中提供了自动求导的函数, 觉得其中一定是用了某些高深的数值分析算法，但在 sicp书中也给了个简单的求导程序, 本质是基于求导法则的递归性质来实现的， 感觉有点意思记录一下。 我们先来看看求导法则:   1234dc &#x2F; dx &#x3D; 0dx &#x2F; dx &#x3D; 1d(u + v) &#x2F; dx &#x3D; du&#x2F;dx + dv&#x2F;dxd(uv)&#x2F;dx &#x3D; u(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Create a derivation program in lisp. 用 Lisp 写个求导程序">
-<meta property="og:url" content="https://stepfenshawn.github.io/2020/07/19/lisp/index.html">
+<meta property="og:url" content="https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/index.html">
 <meta property="og:site_name" content="Stepfen Shawn">
 <meta property="og:description" content="前言记得之前看tensorflow, numpy等库的api中提供了自动求导的函数, 觉得其中一定是用了某些高深的数值分析算法，但在 sicp书中也给了个简单的求导程序, 本质是基于求导法则的递归性质来实现的， 感觉有点意思记录一下。 我们先来看看求导法则:   1234dc &#x2F; dx &#x3D; 0dx &#x2F; dx &#x3D; 1d(u + v) &#x2F; dx &#x3D; du&#x2F;dx + dv&#x2F;dxd(uv)&#x2F;dx &#x3D; u(">
 <meta property="og:locale" content="en_US">
@@ -97,17 +97,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2020/07/19/lisp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2020/07/19/lisp/&text=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2020/07/19/lisp/&is_video=false&description=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Create a derivation program in lisp. 用 Lisp 写个求导程序&body=Check out this article: https://stepfenshawn.github.io/2020/07/19/lisp/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2020/07/19/lisp/&name=Create a derivation program in lisp. 用 Lisp 写个求导程序&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2020/07/19/lisp/&t=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&text=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&is_video=false&description=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Create a derivation program in lisp. 用 Lisp 写个求导程序&body=Check out this article: https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&name=Create a derivation program in lisp. 用 Lisp 写个求导程序&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&t=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -202,17 +202,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2020/07/19/lisp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2020/07/19/lisp/&text=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2020/07/19/lisp/&is_video=false&description=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Create a derivation program in lisp. 用 Lisp 写个求导程序&body=Check out this article: https://stepfenshawn.github.io/2020/07/19/lisp/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2020/07/19/lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2020/07/19/lisp/&name=Create a derivation program in lisp. 用 Lisp 写个求导程序&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2020/07/19/lisp/&t=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&text=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&is_video=false&description=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Create a derivation program in lisp. 用 Lisp 写个求导程序&body=Check out this article: https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&title=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&name=Create a derivation program in lisp. 用 Lisp 写个求导程序&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2020/07/19/derivation_program_in_lisp/&t=Create a derivation program in lisp. 用 Lisp 写个求导程序"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
