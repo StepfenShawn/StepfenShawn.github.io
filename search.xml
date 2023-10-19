@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Import csv data to mongodb. MongoDB导入csv文件</title>
+      <link href="/2023/10/11/mongodb_import_csv/"/>
+      <url>/2023/10/11/mongodb_import_csv/</url>
+      
+        <content type="html"><![CDATA[<p>比如我要将 500yinzi.csv 文件导入 yinzi_hangye_db 的 yinzi500 集合:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoimport --host localhost --port <span class="number">27017</span> --db yinzi_hangye_db --collection yinzi500 --<span class="built_in">type</span> csv --file ./500yinzi.csv --fields <span class="built_in">id</span>,listdatestr,stockcode,P0001,P0102,P0203,P0304,P0405,P0506,P0607,P0708,P0809,P0910,P1011,P1112,noteday,contractname,hangye_name</span><br></pre></td></tr></table></figure><p>更多例子:  </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoimport --host localhost --port <span class="number">40000</span> --db yinzi_hangye_db --collection weight500 --<span class="built_in">type</span> csv --file ./500weight.csv --fields listdatestr,stockcode,contractname,tradedatestr,weight</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoimport --host localhost --port <span class="number">40000</span> --db yinzi_hangye_db --collection stock_fqmininfo2015 --<span class="built_in">type</span> csv --file ./500weight.csv --fields <span class="built_in">id</span>,stockcode,tradedatestr,startprice,maxprice,minprice,endprice,lastdate,profit,lastendprice</span><br></pre></td></tr></table></figure><p>用 <code>--drop</code> 表示如果存在就删除原来的集合(相当于 overwrite), <code>--fields</code> 声明csv的列(当然存进文档里面就变成 key 了),<br><code>--headerline</code> 则指明第一行是列名。<br>踩坑:<br><code>--fields</code>逗号之间不能有空格…  </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> data </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Algorithms training - Linear DP. 算法训练(三) 线性DP.</title>
       <link href="/2023/09/08/alog/linear_dp/"/>
       <url>/2023/09/08/alog/linear_dp/</url>
@@ -233,9 +252,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> data </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
