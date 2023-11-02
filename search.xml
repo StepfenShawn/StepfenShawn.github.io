@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>csv to parquet in duckdb. 使用 duckdb将csv文件转为 parquet.</title>
+      <link href="/2023/11/02/data/csv2parquet/"/>
+      <url>/2023/11/02/data/csv2parquet/</url>
+      
+        <content type="html"><![CDATA[<p>使用 copy to 语句即可:  </p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">copy</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> read_csv(<span class="string">&#x27;E:\BigData\fqstockmin2016-2020.csv&#x27;</span>, </span><br><span class="line">    header<span class="operator">=</span><span class="literal">true</span>, columns<span class="operator">=</span>&#123;</span><br><span class="line">        <span class="string">&#x27;stockcode&#x27;</span>: <span class="string">&#x27;VARCHAR&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;contractname&#x27;</span>: <span class="string">&#x27;VARCHAR&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;datestr&#x27;</span>: <span class="string">&#x27;VARCHAR&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;startprice&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;maxprice&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;minprice&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;endprice&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;volume&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;trademoney&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;id&#x27;</span>: <span class="string">&#x27;BIGINT&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;lastdate&#x27;</span>: <span class="string">&#x27;VARCHAR&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;profit&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;lastendprice&#x27;</span>: <span class="string">&#x27;DOUBLE&#x27;</span></span><br><span class="line">&#125;)) <span class="keyword">to</span></span><br><span class="line"><span class="string">&#x27;E:\BigData\fqstockmin2016-2020.parquet&#x27;</span> (format <span class="string">&#x27;parquet&#x27;</span>);</span><br></pre></td></tr></table></figure><p>注意时间最好用字符串存, 否则为datetime类型的话spark读取会出现一些错误的时间结果</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> data </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Import csv data to mongodb. MongoDB导入csv文件</title>
       <link href="/2023/10/11/mongodb_import_csv/"/>
       <url>/2023/10/11/mongodb_import_csv/</url>
