@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>My notes of paper &quot; MapReduce Simplified Data Processing on Large Clusters &quot;</title>
+      <link href="/2024/03/06/notes/paper_map_reduce/"/>
+      <url>/2024/03/06/notes/paper_map_reduce/</url>
+      
+        <content type="html"><![CDATA[<h1 id="What’s-MapReduce"><a href="#What’s-MapReduce" class="headerlink" title="What’s MapReduce?"></a>What’s MapReduce?</h1><p>A programming model which users can specify a <code>map</code> function that processes a key/value pair to generate a set of intermediate key/value pairs, and a <code>reduce</code> function that merges all intermediate values associated with the same intermediate key.</p><p>The run-time system takes care of the detail of <code>partitioning</code> the input data, scheduling the program’s execution across <code>a set of machines</code>, handling machine failures, and managing the required inter-machine communication.</p><h1 id="Why-MapReduce"><a href="#Why-MapReduce" class="headerlink" title="Why MapReduce?"></a>Why MapReduce?</h1><p>Allow us to express the simple computations we were trying to perform but hides the messy   <code>details of parallelization, fault-tolerance, data distribution and load balancing in a library</code>. </p><h1 id="Programming-Model"><a href="#Programming-Model" class="headerlink" title="Programming Model"></a>Programming Model</h1><p>Expressing the computation as 2 functions: <code>Map</code> and <code>Reduce</code>.  </p><p>Map: takes an input pair and produces a set of intermediate key/value pairs, and then groups together all intermediate values associated with the same intermediate key “I” and passes them to the <code>Reduce</code> function.  </p><p>Reuce: accepts an intermediate key “I” and a set of values for that keys. It merges together these values to form a possibly smaller set of values.  </p><p>types:  </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map (k1, v1) -&gt; list(k2, v2)</span><br><span class="line">reduce (k2, list(v2)) -&gt; list(v2)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Data </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Algorithms training - 2023 12月 Training plan</title>
       <link href="/2023/12/02/training/202312/"/>
       <url>/2023/12/02/training/202312/</url>
@@ -149,9 +168,9 @@
       
         <tags>
             
-            <tag> data </tag>
-            
             <tag> spark </tag>
+            
+            <tag> data </tag>
             
         </tags>
       
