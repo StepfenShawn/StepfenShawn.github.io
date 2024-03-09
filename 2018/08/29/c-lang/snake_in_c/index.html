@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言贪吃蛇源代码收藏">
+<meta property="og:url" content="https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/index.html">
+<meta property="og:site_name" content="Stepfen Shawn">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-08-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-09T07:17:31.129Z">
+<meta property="article:author" content="Stepfen Shawn">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>C语言贪吃蛇源代码收藏</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/09/09/happytime/macao/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/08/18/notes/website/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&text=C语言贪吃蛇源代码收藏"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&is_video=false&description=C语言贪吃蛇源代码收藏"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C语言贪吃蛇源代码收藏&body=Check out this article: https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&name=C语言贪吃蛇源代码收藏&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&t=C语言贪吃蛇源代码收藏"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        C语言贪吃蛇源代码收藏
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Stepfen Shawn</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-08-28T16:00:00.000Z" class="dt-published" itemprop="datePublished">2018-08-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;conio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxy 20</span></span><br><span class="line"><span class="comment">//设置高度</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> maxx 30</span></span><br><span class="line"><span class="comment">//设置宽度</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">zk</span><span class="params">()</span>;<span class="comment">//制框</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">()</span>;<span class="comment">//初始化</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printmap</span><span class="params">()</span>;<span class="comment">//打印</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">move</span><span class="params">()</span>;<span class="comment">//操作</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">pd</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span>;<span class="comment">//判断游戏结果</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">food</span><span class="params">()</span>;<span class="comment">//产生食物</span></span><br><span class="line"><span class="type">int</span> a[maxy][maxx];<span class="comment">//地图</span></span><br><span class="line"><span class="type">int</span> headx,heady;<span class="comment">//蛇头</span></span><br><span class="line"><span class="type">int</span> m;<span class="comment">//是否吃到食物</span></span><br><span class="line"><span class="type">int</span> len;<span class="comment">//蛇长</span></span><br><span class="line"><span class="type">int</span> fx;<span class="comment">//方向</span></span><br><span class="line"><span class="type">int</span> score;<span class="comment">//得分</span></span><br><span class="line"><span class="type">int</span> flag;<span class="comment">//控制游戏结束</span></span><br><span class="line"><span class="type">int</span> mm;<span class="comment">//控制食物的产生</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">        init();</span><br><span class="line">        zk();</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">        <span class="keyword">if</span> (mm)</span><br><span class="line">        &#123;</span><br><span class="line">        food();</span><br><span class="line">        mm=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	clrscr();	<span class="comment">//清屏</span></span><br><span class="line">	move();       <span class="comment">//移动</span></span><br><span class="line">	printmap();  <span class="comment">//打印图</span></span><br><span class="line">	usleep(<span class="number">333333</span>);<span class="comment">//延迟</span></span><br><span class="line">	&#125;<span class="keyword">while</span> (flag);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;按任意键开始新游戏。。&quot;</span>);</span><br><span class="line">	getch();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">()</span>   <span class="comment">//初始化</span></span><br><span class="line">&#123;</span><br><span class="line">	headx=maxx/<span class="number">2</span><span class="number">-5</span>;heady=maxy/<span class="number">2</span>;</span><br><span class="line">	a[heady][headx]=<span class="number">1</span>;</span><br><span class="line">	a[heady][headx<span class="number">-1</span>]=<span class="number">2</span>;</span><br><span class="line">	a[heady][headx<span class="number">-2</span>]=<span class="number">3</span>;</span><br><span class="line">	m=<span class="number">0</span>;</span><br><span class="line">	len=<span class="number">3</span>;</span><br><span class="line">	fx=<span class="number">6</span>;</span><br><span class="line">	score=<span class="number">0</span>;</span><br><span class="line">	flag=<span class="number">1</span>;</span><br><span class="line">	mm=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">zk</span><span class="params">()</span><span class="comment">//边界地图</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> i,j;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;maxy;i++)</span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;maxx;j++)</span><br><span class="line">	<span class="keyword">if</span>(i==<span class="number">0</span>||i==maxy<span class="number">-1</span>||j==<span class="number">0</span>||j==maxx<span class="number">-1</span>)</span><br><span class="line">	 a[i][j]=<span class="number">-2</span>;<span class="comment">//边界</span></span><br><span class="line">	 <span class="keyword">else</span> a[i][j]=<span class="number">0</span>;<span class="comment">//内部</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">printmap</span><span class="params">()</span><span class="comment">//打印</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> i,j;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;maxy;i++)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;maxx;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (a[i][j]==<span class="number">0</span>)</span><br><span class="line">	    <span class="built_in">printf</span>(<span class="string">&quot;\033[47m  \033[0m&quot;</span>);<span class="comment">//空白</span></span><br><span class="line">	    <span class="keyword">else</span> <span class="keyword">if</span> (a[i][j]&gt;<span class="number">1</span>)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;\033[31;42m哈\033[0m&quot;</span>);<span class="comment">//蛇身</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (a[i][j]==<span class="number">1</span>)</span><br><span class="line">	    <span class="built_in">printf</span>(<span class="string">&quot;\033[34;45m头\033[0m&quot;</span>);<span class="comment">//蛇头</span></span><br><span class="line">	    <span class="keyword">else</span> <span class="keyword">if</span> (a[i][j]==<span class="number">-1</span>)</span><br><span class="line">	    <span class="built_in">printf</span>(<span class="string">&quot;\033[33;47m🍄 \033[0m&quot;</span>);<span class="comment">//食物</span></span><br><span class="line">	    <span class="keyword">else</span></span><br><span class="line">	    <span class="built_in">printf</span>(<span class="string">&quot;\033[43m  \033[0m&quot;</span>);<span class="comment">//边界</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\033[31;47mlen:%5d    score:%5d\033[0m\n&quot;</span>,len,score);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">food</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">int</span> i,j,count=<span class="number">0</span>,kk;</span><br><span class="line">  srand(time(<span class="literal">NULL</span>));<span class="comment">//随机产生食物</span></span><br><span class="line">  kk=rand()%((maxx<span class="number">-2</span>)*(maxy<span class="number">-2</span>)-len<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;maxy<span class="number">-1</span>;i++)</span><br><span class="line">  <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;maxx<span class="number">-1</span>;j++)</span><br><span class="line">    <span class="keyword">if</span> (a[i][j]==<span class="number">0</span>)<span class="comment">//空白处</span></span><br><span class="line">   &#123;</span><br><span class="line">   count++;</span><br><span class="line">   <span class="keyword">if</span> (count==kk)</span><br><span class="line">   &#123;</span><br><span class="line">    a[i][j]=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">move</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> nn=fx;</span><br><span class="line">	<span class="keyword">while</span> (kbhit())<span class="comment">//判断键盘有无输入</span></span><br><span class="line">	<span class="comment">//修改，if-&gt;while</span></span><br><span class="line">	nn=getch()<span class="number">-48</span>;<span class="comment">//若有，由getch()读入</span></span><br><span class="line">	<span class="keyword">if</span> (fx+nn!=<span class="number">10</span>)<span class="comment">//防止倒退致死</span></span><br><span class="line">	<span class="keyword">switch</span>(nn)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:pd(<span class="number">0</span>,<span class="number">-1</span>);fx=<span class="number">2</span>;<span class="keyword">break</span>;<span class="comment">//蛇头上移</span></span><br><span class="line">		<span class="keyword">case</span> <span class="number">4</span>:pd(<span class="number">-1</span>,<span class="number">0</span>);fx=<span class="number">4</span>;<span class="keyword">break</span>;<span class="comment">//蛇头左移</span></span><br><span class="line">		<span class="keyword">case</span> <span class="number">6</span>:pd(<span class="number">1</span>,<span class="number">0</span>);fx=<span class="number">6</span>;<span class="keyword">break</span>;<span class="comment">//蛇头右移</span></span><br><span class="line">		<span class="keyword">case</span> <span class="number">8</span>:pd(<span class="number">0</span>,<span class="number">1</span>);fx=<span class="number">8</span>;<span class="keyword">break</span>;<span class="comment">//蛇头下移</span></span><br><span class="line">		<span class="keyword">case</span> <span class="number">5</span>:getch();<span class="comment">//暂停，按任意键继续</span></span><br><span class="line">		<span class="keyword">default</span>:<span class="keyword">break</span>;<span class="comment">//暂停游戏</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">pd</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> i,j;</span><br><span class="line">	headx=headx+x;</span><br><span class="line">	heady=heady+y;</span><br><span class="line">	<span class="keyword">if</span> (a[heady][headx]==<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">        m=<span class="number">1</span>;</span><br><span class="line">        len++;</span><br><span class="line">        mm=<span class="number">1</span>;</span><br><span class="line">        score=score+<span class="number">5</span>+(len%<span class="number">3</span>);<span class="comment">//计分</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (a[heady][headx]!=<span class="number">0</span>)	</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;GAME OVER!\n&quot;</span>);<span class="comment">//游戏结束</span></span><br><span class="line">        flag=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;maxy<span class="number">-1</span>;i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;maxx<span class="number">-1</span>;j++)</span><br><span class="line">            <span class="keyword">if</span>(a[i][j]&gt;=<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                a[i][j]++;<span class="comment">//蛇尾移动</span></span><br><span class="line">                <span class="keyword">if</span> (a[i][j]==len+<span class="number">1</span>&amp;&amp;m==<span class="number">0</span>)</span><br><span class="line">                a[i][j]=<span class="number">0</span>;<span class="comment">//没吃到食物，尾巴要移动</span></span><br><span class="line">            &#125;</span><br><span class="line">	m=<span class="number">0</span>;</span><br><span class="line">	a[heady][headx]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;	</span><br><span class="line">&#125;				</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&text=C语言贪吃蛇源代码收藏"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&is_video=false&description=C语言贪吃蛇源代码收藏"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C语言贪吃蛇源代码收藏&body=Check out this article: https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&title=C语言贪吃蛇源代码收藏"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&name=C语言贪吃蛇源代码收藏&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2018/08/29/c-lang/snake_in_c/&t=C语言贪吃蛇源代码收藏"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2024
+    Stepfen Shawn
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
