@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="引言我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 – read read函数的定义我们来看一下read嘅定义:   1ssize_t read(int fd,void *buf,size_t nbyte) 调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中 分析首先我们看到第一个参数f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Dive into the C raed function. 深入c语言嘅 read 函数">
+<meta property="og:title" content="Dive into the C raed function. 深入c语言的 read 函数">
 <meta property="og:url" content="https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/index.html">
 <meta property="og:site_name" content="🍌Shawn">
 <meta property="og:description" content="引言我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 – read read函数的定义我们来看一下read嘅定义:   1ssize_t read(int fd,void *buf,size_t nbyte) 调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中 分析首先我们看到第一个参数f">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-23T01:12:34.000Z">
-<meta property="article:modified_time" content="2024-03-09T06:20:13.996Z">
+<meta property="article:modified_time" content="2024-07-14T03:36:39.433Z">
 <meta property="article:author" content="🍌Shawn">
 <meta property="article:tag" content="clang">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Dive into the C raed function. 深入c语言嘅 read 函数</title>
+    <title>Dive into the C raed function. 深入c语言的 read 函数</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -99,16 +99,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&text=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&is_video=false&description=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Dive into the C raed function. 深入c语言嘅 read 函数&body=Check out this article: https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&name=Dive into the C raed function. 深入c语言嘅 read 函数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&t=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&text=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&is_video=false&description=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Dive into the C raed function. 深入c语言的 read 函数&body=Check out this article: https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&name=Dive into the C raed function. 深入c语言的 read 函数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&t=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -128,7 +128,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Dive into the C raed function. 深入c语言嘅 read 函数
+        Dive into the C raed function. 深入c语言的 read 函数
     </h1>
 
 
@@ -210,16 +210,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&text=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&is_video=false&description=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Dive into the C raed function. 深入c语言嘅 read 函数&body=Check out this article: https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&name=Dive into the C raed function. 深入c语言嘅 read 函数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&t=Dive into the C raed function. 深入c语言嘅 read 函数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&text=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&is_video=false&description=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Dive into the C raed function. 深入c语言的 read 函数&body=Check out this article: https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&title=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&name=Dive into the C raed function. 深入c语言的 read 函数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/&t=Dive into the C raed function. 深入c语言的 read 函数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
