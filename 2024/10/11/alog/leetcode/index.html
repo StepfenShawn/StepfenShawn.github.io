@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="3164. 优质数对的总数 II (10月11日)题目地址: https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;find-the-number-of-good-pairs-ii&#x2F;description&#x2F;思路: 题目要求我们寻找 nums1[i] 可以被 nums2[j] * k 整除的 (i, j)对数, 假如 nums1[i] 可以被 nums2[j] * k 整除, 那么存在一个整数p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode每日一题题解(10月每日更新).">
+<meta property="og:url" content="https://stepfenshawn.github.io/2024/10/11/alog/leetcode/index.html">
+<meta property="og:site_name" content="🍌Shawn">
+<meta property="og:description" content="3164. 优质数对的总数 II (10月11日)题目地址: https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;find-the-number-of-good-pairs-ii&#x2F;description&#x2F;思路: 题目要求我们寻找 nums1[i] 可以被 nums2[j] * k 整除的 (i, j)对数, 假如 nums1[i] 可以被 nums2[j] * k 整除, 那么存在一个整数p">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-11T07:01:07.391Z">
+<meta property="article:author" content="🍌Shawn">
+<meta property="article:tag" content="alog">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Leetcode每日一题题解(10月每日更新).</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/03/06/notes/paper_map_reduce/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&text=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&is_video=false&description=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Leetcode每日一题题解(10月每日更新).&body=Check out this article: https://stepfenshawn.github.io/2024/10/11/alog/leetcode/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&name=Leetcode每日一题题解(10月每日更新).&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&t=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II-10%E6%9C%8811%E6%97%A5"><span class="toc-number">1.</span> <span class="toc-text">3164. 优质数对的总数 II (10月11日)</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Leetcode每日一题题解(10月每日更新).
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">🍌Shawn</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-10-10T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-10-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/alog/" rel="tag">alog</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="3164-优质数对的总数-II-10月11日"><a href="#3164-优质数对的总数-II-10月11日" class="headerlink" title="3164. 优质数对的总数 II (10月11日)"></a>3164. 优质数对的总数 II (10月11日)</h1><p>题目地址: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/description/">https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/description/</a><br>思路: 题目要求我们寻找 <code>nums1[i]</code> 可以被 <code>nums2[j] * k</code> 整除的 (i, j)对数, 假如 <code>nums1[i]</code> 可以被 <code>nums2[j] * k</code> 整除, 那么存在一个整数<code>p</code>使得 <code>nums1[i] = nums2[j] * k * p</code> 成立, 所以我们会得出一个第一个非常重要的结论: “<code>nums1[i]</code> 能被 k 整除”。<br>那么 <code>nums1[i] / k</code> 也能被 <code>nums2[j]</code> 整除, 于是问题就转化为 对于每一个 <code>(i, j)</code> 里面的 <code>j</code>, 有多少个 <code>nums1[i] / k</code> 能被   <code>nums2[j]</code>所整除.<br>于是大致思路就出来了, 我们先构造一个HashMap, 记录 <code>nums1[i] / k</code> 的每一个因子数量, 然后枚举 nums2, 如果 nums2 能被某个 <code>nums1[i] / k</code> 所整除, 那么对答案的贡献也是那个因子出现的次数(从HashMap取值即可):  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; <span class="title function_">getAllFactors</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; factors = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">1</span>;  d * d &lt;= n; d++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n % d == <span class="number">0</span>) &#123;</span><br><span class="line">                factors.add(d);</span><br><span class="line">                <span class="keyword">if</span> (d * d != n) &#123;</span><br><span class="line">                    factors.add(n / d);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> factors;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">numberOfPairs</span><span class="params">(<span class="type">int</span>[] nums1, <span class="type">int</span>[] nums2, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        Map&lt;Integer, Integer&gt; cnt = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        IntStream.of(nums1)</span><br><span class="line">            .filter(x -&gt; x % k == <span class="number">0</span>)</span><br><span class="line">            .forEach(x -&gt; &#123;</span><br><span class="line">                List&lt;Integer&gt; factors = getAllFactors(x / k);</span><br><span class="line">                factors.parallelStream().forEach(i -&gt; &#123;</span><br><span class="line">                    cnt.merge(i, <span class="number">1</span>, Integer::sum);</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> IntStream.of(nums2).mapToLong(x -&gt; cnt.getOrDefault(x, <span class="number">0</span>)).sum();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3164-%E4%BC%98%E8%B4%A8%E6%95%B0%E5%AF%B9%E7%9A%84%E6%80%BB%E6%95%B0-II-10%E6%9C%8811%E6%97%A5"><span class="toc-number">1.</span> <span class="toc-text">3164. 优质数对的总数 II (10月11日)</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&text=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&is_video=false&description=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Leetcode每日一题题解(10月每日更新).&body=Check out this article: https://stepfenshawn.github.io/2024/10/11/alog/leetcode/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&title=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&name=Leetcode每日一题题解(10月每日更新).&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2024/10/11/alog/leetcode/&t=Leetcode每日一题题解(10月每日更新)."><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2024
+    🍌Shawn
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
