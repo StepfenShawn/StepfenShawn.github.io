@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="构建一个高效的大规模数据系统需要同时考虑(按照重要级别排序)： 算法的时间复杂度优化   内存, cpu, 网络, io等硬件的使用效率   系统资源的合理调度   代码的可维护性     ETL (Extract - Transform - Load)用来描述数据从源端经过抽取(extract), 转换(transform), 加载(load)至目标端的过程。最耗时间的是transform过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据知识相关复习">
+<meta property="og:url" content="https://stepfenshawn.github.io/2024/12/15/notes/bigdata/index.html">
+<meta property="og:site_name" content="🍌Shawn">
+<meta property="og:description" content="构建一个高效的大规模数据系统需要同时考虑(按照重要级别排序)： 算法的时间复杂度优化   内存, cpu, 网络, io等硬件的使用效率   系统资源的合理调度   代码的可维护性     ETL (Extract - Transform - Load)用来描述数据从源端经过抽取(extract), 转换(transform), 加载(load)至目标端的过程。最耗时间的是transform过程。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-12-15T11:48:34.000Z">
+<meta property="article:modified_time" content="2024-12-19T13:41:19.491Z">
+<meta property="article:author" content="🍌Shawn">
+<meta property="article:tag" content="Data">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>大数据知识相关复习</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/10/11/alog/leetcode/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&text=大数据知识相关复习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&is_video=false&description=大数据知识相关复习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=大数据知识相关复习&body=Check out this article: https://stepfenshawn.github.io/2024/12/15/notes/bigdata/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&name=大数据知识相关复习&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&t=大数据知识相关复习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%AB%98%E6%95%88%E7%9A%84%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F%E9%9C%80%E8%A6%81%E5%90%8C%E6%97%B6%E8%80%83%E8%99%91-%E6%8C%89%E7%85%A7%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E6%8E%92%E5%BA%8F-%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">构建一个高效的大规模数据系统需要同时考虑(按照重要级别排序)：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ETL-Extract-Transform-Load"><span class="toc-number">2.</span> <span class="toc-text">ETL (Extract - Transform - Load)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">SQL连接算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">SQL窗口函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="toc-number">5.</span> <span class="toc-text">SQL递归查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7"><span class="toc-number">6.</span> <span class="toc-text">SQL优化技巧</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop-%E5%9F%BA%E7%A1%80"><span class="toc-number">7.</span> <span class="toc-text">Hadoop 基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93-Data-Warehouse"><span class="toc-number">8.</span> <span class="toc-text">数据仓库(Data Warehouse)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%86%E5%B1%82"><span class="toc-number">9.</span> <span class="toc-text">数据仓库的分层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="toc-number">10.</span> <span class="toc-text">数据库三范式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E9%97%AE%E9%A2%98"><span class="toc-number">11.</span> <span class="toc-text">数据倾斜问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E9%97%AE%E9%A2%98"><span class="toc-number">12.</span> <span class="toc-text">其它问题</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        大数据知识相关复习
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">🍌Shawn</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-15T11:48:34.000Z" class="dt-published" itemprop="datePublished">2024-12-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Data/" rel="tag">Data</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="构建一个高效的大规模数据系统需要同时考虑-按照重要级别排序-："><a href="#构建一个高效的大规模数据系统需要同时考虑-按照重要级别排序-：" class="headerlink" title="构建一个高效的大规模数据系统需要同时考虑(按照重要级别排序)："></a>构建一个高效的大规模数据系统需要同时考虑(按照重要级别排序)：</h1><ol>
+<li>算法的时间复杂度优化  </li>
+<li>内存, cpu, 网络, io等硬件的使用效率  </li>
+<li>系统资源的合理调度  </li>
+<li>代码的可维护性   </li>
+</ol>
+<h1 id="ETL-Extract-Transform-Load"><a href="#ETL-Extract-Transform-Load" class="headerlink" title="ETL (Extract - Transform - Load)"></a>ETL (Extract - Transform - Load)</h1><p>用来描述数据从源端经过抽取(extract), 转换(transform), 加载(load)至目标端的过程。最耗时间的是<code>transform</code>过程。 </p>
+<h1 id="SQL连接算法"><a href="#SQL连接算法" class="headerlink" title="SQL连接算法"></a>SQL连接算法</h1><ul>
+<li>Nested Loop Join: 嵌套的循环连接, 简单地说就是两层<code>for</code>循环根据条件进行匹配(当然会有索引优化)</li>
+<li>Hash Join: 观察连接条件的字段, 根据其中一个表的字段建立一个buckets, 然后对另外一个表循环与buckets中的值进行条件匹配</li>
+<li>Sort Merge Join: 先对两个表进行排序, 有了排序关系后就可以更加高效的进行连接(类似与双指针的思想, 一个表一个指针, 根据不同条件移动指针)</li>
+</ul>
+<h1 id="SQL窗口函数"><a href="#SQL窗口函数" class="headerlink" title="SQL窗口函数"></a>SQL窗口函数</h1><p>常见函数 <code>row_number</code>, <code>count</code>, <code>sum</code>等等…<br>固定大小rows代表行的固定, range则是窗口内值的固定:  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">rows</span> <span class="number">1</span> preceding <span class="number">2</span> following <span class="number">2</span></span><br><span class="line"><span class="keyword">range</span> <span class="number">1</span> preceding <span class="number">2</span> following <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="SQL递归查询"><a href="#SQL递归查询" class="headerlink" title="SQL递归查询"></a>SQL递归查询</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> cte_name (column_list) <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> initial_query_result</span><br><span class="line">    <span class="keyword">UNION</span> [<span class="keyword">ALL</span>]</span><br><span class="line">    <span class="keyword">SELECT</span> recursive_query</span><br><span class="line">    <span class="keyword">FROM</span> cte_name</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">condition</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> cte_name;</span><br></pre></td></tr></table></figure>
+<h1 id="SQL优化技巧"><a href="#SQL优化技巧" class="headerlink" title="SQL优化技巧"></a>SQL优化技巧</h1><ul>
+<li>深入理解数据, 争取从算法逻辑上优化</li>
+<li>分析每一个计算阶段, 在保证正确性的情况下尽可能使得每一个阶段计算的数据量足够小(过滤无用的数据， 可以用)</li>
+<li>小表驱动大表</li>
+<li>索引优化</li>
+<li>必要时对数据进行分区或者分桶, 提高并行度</li>
+<li>将算子转化到一些高性能的库(可以是Rust的DataFusion, 快手在做这个)<br>总结: 因为计算机所有东西都是由信息组成。于是可以通过信息论进行解释, 消除不确定性, 使得编码所需的空间就更加小了，那么就能提高计算机各方面资源的利用率。我喜欢用信息论去理解性能问题。</li>
+</ul>
+<h1 id="Hadoop-基础"><a href="#Hadoop-基础" class="headerlink" title="Hadoop 基础"></a>Hadoop 基础</h1><p>三大组件:</p>
+<ul>
+<li>hdfs</li>
+<li>mapreduce</li>
+<li>yarn</li>
+</ul>
+<p>hdfs三大角色:     </p>
+<ul>
+<li>NameNode</li>
+<li>DataNode</li>
+<li>SecondNameNode</li>
+</ul>
+<p>hdfs文件格式:  </p>
+<ul>
+<li>Text File (类似csv的行式存储)</li>
+<li>Sequence File (kv序列化存储, 常用于中间数据)</li>
+<li>Avro File (基于行的序列化)</li>
+<li>RC/ORC (列式存储, 支持压缩和切分)</li>
+<li>Parquet (我最喜欢的列式存储, 高压缩)</li>
+</ul>
+<p>文件压缩算法: Gzip、bzip2、LZO、LZ4和Snappy  </p>
+<h1 id="数据仓库-Data-Warehouse"><a href="#数据仓库-Data-Warehouse" class="headerlink" title="数据仓库(Data Warehouse)"></a>数据仓库(Data Warehouse)</h1><p>什么是数据仓库, 其实和数据库的本质相似, 都是<code>数据的集合</code>, 但区别就是所对应数据存储的特点和目的不一样。  </p>
+<p>数据库(database)存下数据的特点: 有组织, 可共享, 尽可能小的冗余<br>数据仓库(data warehouse)下数据的特点:  </p>
+<ul>
+<li>面向主题的(Subject Oriented)</li>
+<li>集成的(Integrated)</li>
+<li>相对稳定的(Non-Volatile)</li>
+<li>反映历史的(Time Variant)</li>
+</ul>
+<p>为什么需要数据仓库?<br>复杂问题分解, 提高复用降低计算成本(空间换时间的思想), 可维护性提升.  </p>
+<h1 id="数据仓库的分层"><a href="#数据仓库的分层" class="headerlink" title="数据仓库的分层"></a>数据仓库的分层</h1><ul>
+<li>ods</li>
+<li>dwd</li>
+<li>dwm</li>
+<li>dws </li>
+<li>apl</li>
+</ul>
+<h1 id="数据库三范式"><a href="#数据库三范式" class="headerlink" title="数据库三范式"></a>数据库三范式</h1><ol>
+<li>原子性, 表中字段的数据不可以再拆分  </li>
+<li>唯一性, 其实就是消除依赖, 一个表只描述一件事情  </li>
+<li>在满足以上2的情况下, 完全消除非主键列的依赖性</li>
+</ol>
+<h1 id="数据倾斜问题"><a href="#数据倾斜问题" class="headerlink" title="数据倾斜问题"></a>数据倾斜问题</h1><p>什么是数据倾斜? 本质上是由于数据分配给各个集群服务器不均匀导致的, 于是就可能出现某台服务器Task运行时间久或者直接OOM(Out Of Memoey).  </p>
+<p>解决: 实现要搞清楚Map过程是不会发生数据倾斜的, 因为 hdfs 都帮我们分成了 128 MB 的 <code>block</code> 保证了每台服务器上数据的均匀分配。发生数据倾斜一般是在 Shuffle 这个过程, 因为这个过程负责混洗和分区, 可能会造成分区到一台机器的数据量就过多了, 也有可能分区到其它机器的数据量极其少。  </p>
+<p>AI的答案:  </p>
+<ul>
+<li>空值处理：在进行表连接时，可以通过过滤或赋予空值新的key值来避免数据倾斜。  </li>
+<li>数据类型统一：在join操作中，确保连接字段的数据类型一致，避免不同数据类型引起的倾斜。  </li>
+<li>大小表连接优化：对于大小表的连接，可以采用map端join，即将小表数据广播到所有节点，避免shuffle操作。  </li>
+<li>两阶段聚合：对于group by操作导致的数据倾斜，可以使用两阶段聚合，即先局部聚合再全局聚合，通过增加随机前缀打散key值。  </li>
+<li>count distinct优化：对于count distinct操作，可以将空值单独处理或使用sum() group by来替代。  </li>
+<li>排序优化：对于排序操作，可以考虑是否只有一个reducer在工作，如果是，则可能需要增加reducer数量或调整策略。  </li>
+</ul>
+<h1 id="其它问题"><a href="#其它问题" class="headerlink" title="其它问题"></a>其它问题</h1><ul>
+<li>MapReduce三个过程?<br>Input Splitting -&gt; Mapping -&gt; Shuffling and Sorting -&gt; Reduce.</li>
+<li>MapReduce中为什么需要 Shuffle?<br>确保下一步能够并行处理(利益最大化), 相同键的键值对分配到同一个Reduce任务中. 排序确保Reduce任务能够按照key的顺序进行处理 </li>
+<li>为什么把任务写入环形内存缓冲区?<br>减少频繁的磁盘I/O操作. 并行处理. </li>
+<li>Hadoop中fsimage和edit的区别是什么？<br>fsimage是静态(历史)的, edit是动态(实时)的.</li>
+<li>Hadoop的Combiner的作用？<br>在Map阶段之后，在数据传输到Reduce阶段之前对Map输出的中间劫夺进行本地合并和压缩，以减少数据的传输量和提高整体的性能。Combiner可以将相同key的多个Map输出结果进行合并，减少了网络传输的数据量.</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%AB%98%E6%95%88%E7%9A%84%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F%E9%9C%80%E8%A6%81%E5%90%8C%E6%97%B6%E8%80%83%E8%99%91-%E6%8C%89%E7%85%A7%E9%87%8D%E8%A6%81%E7%BA%A7%E5%88%AB%E6%8E%92%E5%BA%8F-%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">构建一个高效的大规模数据系统需要同时考虑(按照重要级别排序)：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ETL-Extract-Transform-Load"><span class="toc-number">2.</span> <span class="toc-text">ETL (Extract - Transform - Load)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">SQL连接算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">SQL窗口函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="toc-number">5.</span> <span class="toc-text">SQL递归查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7"><span class="toc-number">6.</span> <span class="toc-text">SQL优化技巧</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop-%E5%9F%BA%E7%A1%80"><span class="toc-number">7.</span> <span class="toc-text">Hadoop 基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93-Data-Warehouse"><span class="toc-number">8.</span> <span class="toc-text">数据仓库(Data Warehouse)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%86%E5%B1%82"><span class="toc-number">9.</span> <span class="toc-text">数据仓库的分层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="toc-number">10.</span> <span class="toc-text">数据库三范式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E9%97%AE%E9%A2%98"><span class="toc-number">11.</span> <span class="toc-text">数据倾斜问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E9%97%AE%E9%A2%98"><span class="toc-number">12.</span> <span class="toc-text">其它问题</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&text=大数据知识相关复习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&is_video=false&description=大数据知识相关复习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=大数据知识相关复习&body=Check out this article: https://stepfenshawn.github.io/2024/12/15/notes/bigdata/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&title=大数据知识相关复习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&name=大数据知识相关复习&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://stepfenshawn.github.io/2024/12/15/notes/bigdata/&t=大数据知识相关复习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2024
+    🍌Shawn
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
