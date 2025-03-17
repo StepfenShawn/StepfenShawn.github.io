@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>定个小目标</title>
+      <link href="/2025/02/25/msic/target/"/>
+      <url>/2025/02/25/msic/target/</url>
+      
+        <content type="html"><![CDATA[<p>是时候找好就业方向了, 决定日后成为一名AI时代下牛逼的”全栈开发工程师”，然后我认为自己的目标应该是这样的：  </p><h1 id="1-全栈开发基础能力"><a href="#1-全栈开发基础能力" class="headerlink" title="1.全栈开发基础能力"></a>1.全栈开发基础能力</h1><h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><ul><li>核心三件套：HTML5/CSS3（Flex/Grid布局、响应式）、ES6+（模块化、异步编程）</li><li>主流框架：React/Vue/Angular（至少精通一个，掌握状态管理如 Redux/Vuex）</li><li>工程化工具链：Webpack/Vite、Babel、TypeScript、npm/yarn/pnpm</li><li>性能优化：Lighthouse分析、代码分割、懒加载、CDN缓存策略</li></ul><h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><ul><li>Node.js(Express), Python(Django/Flask), Java（Spring Boot）, Rust（Actix Web）</li><li>RESTful API 设计：标准化接口、JWT/OAuth2鉴权、Swagger/OpenAPI文档</li><li>微服务基础：gRPC/GraphQL、服务拆分、基础通信模式 （HTTP/HTTPS、TCP/UDP、WebSocket）</li><li>高并发处理: 异步编程（协程/Promise）、消息队列（RabbitMQ/Kafka）</li></ul><h2 id="数据库与存储"><a href="#数据库与存储" class="headerlink" title="数据库与存储"></a>数据库与存储</h2><ul><li>SQL 数据库：MySQL/PostgreSQL（事务、索引优化、分库分表）</li><li>NoSQL 数据库：MongoDB（聚合管道）、Redis（缓存/分布式锁）</li><li>云存储：AWS S3、阿里云OSS、MinIO自建</li><li>ORM/ODM：Sequelize、TypeORM、Mongoose</li></ul><h2 id="运维与部署"><a href="#运维与部署" class="headerlink" title="运维与部署"></a>运维与部署</h2><ul><li>Linux 基础：Shell脚本、系统监控（htop）、日志分析</li><li>容器化：Docker 镜像优化、Docker Compose 编排</li><li>云服务：AWS/阿里云核心服务（ECS、VPC、负载均衡）</li></ul><h2 id="开发协作"><a href="#开发协作" class="headerlink" title="开发协作"></a>开发协作</h2><ul><li>版本控制：Git 高级操作（rebase、cherry-pick）、Git Flow</li><li>代码质量：ESLint/StyleLint、单元测试（Jest/React Testing Library）</li></ul><h1 id="2-高阶竞争力：拉开差距的关键"><a href="#2-高阶竞争力：拉开差距的关键" class="headerlink" title="2.高阶竞争力：拉开差距的关键"></a>2.高阶竞争力：拉开差距的关键</h1><h2 id="架构设计能力"><a href="#架构设计能力" class="headerlink" title="架构设计能力"></a>架构设计能力</h2><ul><li>云原生架构：Kubernetes 集群管理、Service Mesh（Istio）、Serverless（AWS Lambda）</li><li>可观测性：Prometheus/Grafana 监控、ELK日志体系、分布式追踪（Jaeger）</li><li>安全攻防：OWASP Top 10防护方案、渗透测试工具（Burp Suite）</li></ul><h2 id="工程化深度"><a href="#工程化深度" class="headerlink" title="工程化深度"></a>工程化深度</h2><ul><li>Monorepo 管理：Lerna/Nx、TurboRepo 多包协作</li><li>低代码平台：自研可视化搭建系统、DSL设计</li><li>自动化运维：Ansible/Terraform 基础设施即代码（IaC）</li></ul><h2 id="前沿技术融合"><a href="#前沿技术融合" class="headerlink" title="前沿技术融合"></a>前沿技术融合</h2><ul><li>AI 工程化：LangChain 应用开发、大模型API集成（GPT/Claude）</li><li>边缘计算：CDN边缘函数（Cloudflare Workers）、IoT协议（MQTT）</li><li>Web3 技术栈：Solidity智能合约、IPFS分布式存储</li></ul><h2 id="硬核内功技术"><a href="#硬核内功技术" class="headerlink" title="硬核内功技术"></a>硬核内功技术</h2><ul><li>深入理解类型系统与架构抽象(多写Ocaml和FP锻炼抽象能力)</li><li>扎实的数据结构与算法</li><li>编译优化 + 程序性能优化</li><li>深入了解计算机操作系统(啃下 CSAPP)</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Data </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>达里奥&lt;&lt;原则&gt;&gt;读书笔记</title>
       <link href="/2025/02/22/msic/principles/"/>
       <url>/2025/02/22/msic/principles/</url>
