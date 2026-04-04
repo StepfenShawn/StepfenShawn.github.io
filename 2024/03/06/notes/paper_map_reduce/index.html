@@ -166,9 +166,7 @@
 <h1 id="Programming-Model"><a href="#Programming-Model" class="headerlink" title="Programming Model"></a>Programming Model</h1><p>Expressing the computation as 2 functions: <code>Map</code> and <code>Reduce</code>.  </p>
 <p>Map: takes an input pair and produces a set of intermediate key/value pairs, and then groups together all intermediate values associated with the same intermediate key “I” and passes them to the <code>Reduce</code> function.  </p>
 <p>Reuce: accepts an intermediate key “I” and a set of values for that keys. It merges together these values to form a possibly smaller set of values.  </p>
-<p>types:  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map (k1, v1) -&gt; list(k2, v2)</span><br><span class="line">reduce (k2, list(v2)) -&gt; list(v2)</span><br></pre></td></tr></table></figure>
-
+<p>types:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map (k1, v1) -&gt; list(k2, v2)</span><br><span class="line">reduce (k2, list(v2)) -&gt; list(v2)</span><br></pre></td></tr></table></figure></p>
 
   </div>
 </article>

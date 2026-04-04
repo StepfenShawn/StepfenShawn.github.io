@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="引言我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 – read read函数的定义我们来看一下read嘅定义:   1ssize_t read(int fd,void *buf,size_t nbyte) 调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中 分析首先我们看到第一个参数f">
+    <meta name="description" content="引言我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 — read read函数的定义我们来看一下read嘅定义:1ssize_t read(int fd,void *buf,size_t nbyte)调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中 分析首先我们看到第一个参数fd系in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dive into the C raed function. 深入c语言的 read 函数">
 <meta property="og:url" content="https://stepfenshawn.github.io/2021/01/23/c-lang/c_lang_read/index.html">
 <meta property="og:site_name" content="🍌Shawn">
-<meta property="og:description" content="引言我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 – read read函数的定义我们来看一下read嘅定义:   1ssize_t read(int fd,void *buf,size_t nbyte) 调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中 分析首先我们看到第一个参数f">
+<meta property="og:description" content="引言我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 — read read函数的定义我们来看一下read嘅定义:1ssize_t read(int fd,void *buf,size_t nbyte)调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中 分析首先我们看到第一个参数fd系in">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-23T01:12:34.000Z">
 <meta property="article:modified_time" content="2024-07-14T03:36:39.433Z">
@@ -160,21 +160,14 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 – read</p>
-<h1 id="read函数的定义"><a href="#read函数的定义" class="headerlink" title="read函数的定义"></a>read函数的定义</h1><p>我们来看一下read嘅定义:  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ssize_t</span> <span class="title function_">read</span><span class="params">(<span class="type">int</span> fd,<span class="type">void</span> *buf,<span class="type">size_t</span> nbyte)</span></span><br></pre></td></tr></table></figure>
-<p>调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>首先我们看到第一个参数fd系int类型嘅, 当你打开文件时可以调用open函数返回值赋给fd:  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd = open(文件地址)</span><br><span class="line">read(fd, ...)</span><br></pre></td></tr></table></figure>
-
-<p>当然我们也可以不打开文件, 我们使用STDIN_FILENO 可以建一个待读写嘅文件:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read(STDIN_FILENO, ...)</span><br></pre></td></tr></table></figure>
-<p>实际上, <code>fd</code>指的就是文件描述符, 咁问题来了, 咩系”文件描述符”?</p>
+    <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>我们都知道c语言是一门非常强大的语言, 这得益于佢对系统底层嘅完美封装，因此用c语言读取文件嘅效率非常高, 接下来我们来看看读取文件最基本嘅函数 — read</p>
+<h1 id="read函数的定义"><a href="#read函数的定义" class="headerlink" title="read函数的定义"></a>read函数的定义</h1><p>我们来看一下read嘅定义:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ssize_t</span> <span class="title function_">read</span><span class="params">(<span class="type">int</span> fd,<span class="type">void</span> *buf,<span class="type">size_t</span> nbyte)</span></span><br></pre></td></tr></table></figure><br>调用该函数就会从fd中读取最多nbytes个字节到缓冲区buf中</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>首先我们看到第一个参数fd系int类型嘅, 当你打开文件时可以调用open函数返回值赋给fd:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd = open(文件地址)</span><br><span class="line">read(fd, ...)</span><br></pre></td></tr></table></figure></p>
+<p>当然我们也可以不打开文件, 我们使用STDIN_FILENO 可以建一个待读写嘅文件:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read(STDIN_FILENO, ...)</span><br></pre></td></tr></table></figure><br>实际上, <code>fd</code>指的就是文件描述符, 咁问题来了, 咩系”文件描述符”?</p>
 <h1 id="文件描述符系咩"><a href="#文件描述符系咩" class="headerlink" title="文件描述符系咩?"></a>文件描述符系咩?</h1><p>我们可以把文件描述符理解成一个索引, 当调用read函数嘅时候, 系统内核会利用文件描述符（file descriptor）来访问文件. 而打开现存文件或新建文件时, 即系调用open函数后, 系统内核会返回一个文件描述符. </p>
 <p>其实呢, 在操作系统内部对文件进行相关操作时，都可能会创建对应的文件描述符, 这不正正应证了那句名言<code>Linux 中一切都是文件</code>?</p>
 <h1 id="模拟vim编辑器的输入模式"><a href="#模拟vim编辑器的输入模式" class="headerlink" title="模拟vim编辑器的输入模式"></a>模拟vim编辑器的输入模式</h1><p>接下来我们就能用c语言read写模拟vim嘅输入模式喇:  </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (read(STDIN_FILENO, &amp;c, <span class="number">1</span>) == <span class="number">1</span> &amp;&amp; c != <span class="string">&#x27;q&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>以上就系个人对c语言文件读取的理解, 由于系个初学者(弱鸡)可能有D地方会有错误, 欢迎各位指出!!!</p>
 
   </div>

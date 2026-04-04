@@ -16,8 +16,8 @@
 <meta property="article:published_time" content="2019-06-30T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-08-27T06:44:20.897Z">
 <meta property="article:author" content="🍌Shawn">
-<meta property="article:tag" content="data">
 <meta property="article:tag" content="ai">
+<meta property="article:tag" content="data">
 <meta name="twitter:card" content="summary">
     
     
@@ -163,7 +163,7 @@
   <div class="content e-content" itemprop="articleBody">
     <h1 id="先落结论"><a href="#先落结论" class="headerlink" title="先落结论"></a>先落结论</h1><p>用 n[l] 表示第 l 层神经元的数量, w[l] 为第 l 层的权重, b[l] 为偏置<br>z[l] 表示未激活前的矩阵(也就是wx+b的结果), a[l] 表示激活 z[l] 后(第 l 层的输出)的矩阵<br>那么正确的神经网络各矩阵的维度应该为:<br>w[l]: (n[l], n[l - 1])<br>b[l]: (n[l], 1)<br>a[l], z[l]: (n[l], 1)<br>当输入多个训练集m, w[l] 维度不变(因为神经元数量 n[l] 和 n[l - 1] 没有改变), 而 z[l], a[l] 变为 (n[l], m).  </p>
 <h1 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h1><p>简单地说就是要满足矩阵乘法的正确性.  </p>
-<p>假设只有 1 个训练集, 我们知道第 l 层神经网络如下:<br>z[l] = w[l] a[l - 1] + b[l]<br>a[l] = g<a href="z%5Bl%5D">l</a></p>
+<p>假设只有 1 个训练集, 我们知道第 l 层神经网络如下:<br>z[l] = w[l] a[l - 1] + b[l]<br>a[l] = g<a href="z[l]">l</a></p>
 <p>我们知道在第 l - 1 层有 n[l - 1] 个神经元, 那么上一层的输出 a[l - 1] 一定是 (n[l - 1], 1) 的, 假设 w[l] 有 k行j列, 那么:<br>(k, j) * (n[l - 1], 1) + (n[l], 1), 根据矩阵乘法我们显然可以知道 j 一定为 n[l - 1], 由于当前层有 n[l] 个神经元, 所以要分配一个 n[l] 行的矩阵给 w[l] (k = n[l]).<br>于是 w[l]: (n[l], n[l - 1])</p>
 <p>激活函数是个向量化的函数, 显然可以得到 z[l] 和 a[l] 的维度是相等的.  </p>
 
